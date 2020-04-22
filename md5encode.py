@@ -55,7 +55,7 @@ def fun(fun_list, f, m, shi):
         fun_list = shift(fun_list)
         count += 1
         Ti_count += 1
-        print(fun_list)
+        #print(fun_list)
     return fun_list
 
 
@@ -121,7 +121,6 @@ if __name__ == '__main__':
         msg_lenth_0x_list.append('0x' + msg_lenth_0x_big_order[i:i + 2])
     ascii_list.extend(msg_lenth_0x_list)
     print(ascii_list)
-    print(int(len(ascii_list)/64))
     # 对每个分组进行4轮运算
     for i in range(0, int(len(ascii_list)/64)):
         # 将最初128位种子存放在变量中，
@@ -132,7 +131,7 @@ if __name__ == '__main__':
         order_3 = genM16(m_3, ascii_list, i)
         order_4 = genM16(m_4, ascii_list, i)
         # 主要四轮运算，注意打印结果列表已经被进行过右移操作！
-        print(abcd_list)
+ 
         abcd_list = fun(abcd_list, F, order_1, shi_1)
         abcd_list = fun(abcd_list, G, order_2, shi_2)
         abcd_list = fun(abcd_list, H, order_3, shi_3)
@@ -145,7 +144,7 @@ if __name__ == '__main__':
 
         # 将输出放到列表中，作为下一次128位种子
         abcd_list = [output_a, output_b, output_c, output_d]
-        #print(abcd_list)
+      
         # 将全局变量Ti_count恢复，一遍开始下一个分组的操作。
         Ti_count = 1
 
